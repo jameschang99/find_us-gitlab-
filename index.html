@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f2"><title>Find people on GitLab</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#18211d;background:#f5f5f2;font-synthesis:none;text-rendering:optimizeLegibility}*{box-sizing:border-box}body{margin:0}.topbar{height:68px;border-bottom:1px solid #e4e7e2;background:#fbfcfa;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100vw - 1100px)/2))}.brand{display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:-.03em}.mark{width:30px;height:30px;border-radius:9px;background:#e75b39;display:grid;place-items:center;color:white}.top-note{font-size:11px;color:#68736c;background:#f0f2ee;border-radius:20px;padding:8px 11px}.main{max-width:1100px;margin:auto;padding:58px 24px 72px}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#638173;font-weight:750}.intro{margin-bottom:28px}.intro h1{font-size:clamp(36px,5vw,52px);line-height:1.06;letter-spacing:-.055em;margin:12px 0;font-weight:720}.intro p{color:#6c766f;margin:0;font-size:14px;line-height:1.65}.panel{background:#fff;border:1px solid #e5e9e4;border-radius:14px;padding:20px;box-shadow:0 5px 22px #213b2d08}.filters{display:grid;grid-template-columns:1.2fr 1fr 1fr .9fr auto;gap:11px;align-items:end}.field label{display:block;color:#69736d;font-weight:650;font-size:10px;letter-spacing:.04em;margin:0 0 7px 1px}.field input,.field select{width:100%;height:44px;border:1px solid #dde2dc;border-radius:8px;background:white;padding:0 11px;color:#24312a;outline:none}.field input:focus,.field select:focus{border-color:#4d8064;box-shadow:0 0 0 3px #4d80641c}.field input::placeholder{color:#a0a9a2}.button{height:44px;padding:0 17px;border:0;border-radius:8px;background:#203b2d;color:white;font-weight:650;cursor:pointer}.button:disabled{opacity:.55;cursor:wait}.hint{margin:10px 1px 0;color:#7c877e;font-size:11px;line-height:1.55}.results-head{display:flex;justify-content:space-between;align-items:center;margin:28px 1px 12px}.results-title{font-weight:700;font-size:14px}.count{color:#849088;font-size:12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:#fff;border:1px solid #e5e9e4;border-radius:12px;padding:17px;display:flex;gap:13px;min-width:0}.avatar{width:42px;height:42px;flex:none;border-radius:12px;object-fit:cover;background:#eaf0eb}.avatar-fallback{display:grid;place-items:center;color:#43634f;font-weight:750;font-size:14px}.identity{flex:1;min-width:0}.person-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.person{font-size:14px;font-weight:700;letter-spacing:-.02em}.level{font-size:10px;color:#587464;background:#edf4ef;padding:4px 7px;border-radius:20px;font-weight:650}.title{font-size:12px;color:#59665e;margin:5px 0 9px}.meta{display:flex;align-items:center;gap:7px;color:#77827a;font-size:11px;flex-wrap:wrap}.contact{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding-top:11px;border-top:1px solid #eef0ed}.email{font-size:12px;color:#375b46;overflow-wrap:anywhere}.email.missing{color:#9aa49c;font-style:italic}.profile{font-size:11px;color:#52665a;text-decoration:none;border:1px solid #e5e9e4;border-radius:6px;padding:6px 8px;flex:none}.profile:hover{border-color:#a8b8ac;color:#203b2d}.empty{grid-column:1/-1;text-align:center;padding:42px 22px;border:1px dashed #d8dfd8;border-radius:12px;color:#77827a;background:#fafbf9}.empty strong{display:block;color:#33443a;margin-bottom:6px}.notice{display:none;margin:0 0 14px;padding:11px 13px;border-radius:8px;background:#fff3ee;color:#8d432f;font-size:12px;line-height:1.5}.notice.show{display:block}.foot{margin-top:15px;color:#879188;font-size:11px;line-height:1.65}.foot b{color:#647269}@media(max-width:800px){.filters{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}}@media(max-width:480px){.topbar{padding:0 18px}.main{padding:42px 18px 55px}.filters{grid-template-columns:1fr}.button{width:100%}.panel{padding:16px}.top-note{font-size:10px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="brand"><span class="mark" aria-hidden="true">&#x2315;</span><span>find/gitlab</span></div><span class="top-note">Live GitLab profiles</span></header>
+  <main class="main">
+    <section class="intro"><div class="eyebrow">GitLab people search</div><h1>Find people by<br>what they do.</h1><p>Filter public GitLab profiles by location, job title, and experience level.<br>Only publicly listed Gmail addresses are shown.</p></section>
+    <section class="panel" aria-label="Search people"><form id="search-form" class="filters">
+      <div class="field"><label for="token">GITLAB ACCESS TOKEN</label><input id="token" name="token" type="password" required placeholder="Paste read_api token" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label for="location">LOCATION</label><input id="location" name="location" required placeholder="e.g. Tokyo" autocomplete="off"></div>
+      <div class="field"><label for="role">JOB TITLE</label><input id="role" name="role" placeholder="e.g. designer" autocomplete="off"></div>
+      <div class="field"><label for="level">LEVEL (INFERRED)</label><select id="level" name="level"><option value="" selected>Any level</option><option value="Entry">Entry</option><option value="Mid">Mid</option><option value="Senior">Senior</option><option value="Lead">Lead</option><option value="Unspecified">Unspecified</option></select></div>
+      <button id="search-button" class="button" type="submit">Search -&gt;</button>
+    </form><p class="hint">Paste a GitLab read_api token. It stays in this page memory and is not saved. Search checks at most 100 profiles from one GitLab user-list page.</p></section>
+    <section aria-live="polite"><div class="results-head"><div class="results-title">Public Gmail profiles</div><div id="count" class="count"></div></div><div id="notice" class="notice" role="alert"></div><div id="cards" class="cards"><div class="empty"><strong>Search GitLab profiles</strong>Choose a location to get started.</div></div></section>
+    <p class="foot"><b>Data limits:</b> GitLab does not support searching the full user directory by location or job title. This app checks only the first 100 profiles returned by the users API, then filters their public profile fields. Results are not comprehensive. Seniority is estimated from the listed job title. Only a public email ending in @gmail.com is shown; the app does not guess or read private email addresses.</p>
+  </main>
+  <script>
+    const form = document.querySelector("#search-form");
+    const cards = document.querySelector("#cards");
+    const count = document.querySelector("#count");
+    const notice = document.querySelector("#notice");
+    const button = document.querySelector("#search-button");
+    const tokenInput = document.querySelector("#token");
+    const initials = name => (name || "?").trim().split(/\s+/).map(part => part[0]).slice(0,2).join("").toUpperCase();
+    function el(tag, className, text) { const node = document.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; }
+    function render(people, checked) {
+      count.textContent = `${people.length} Gmail ${people.length === 1 ? "address" : "addresses"} from ${checked} checked profiles`;
+      cards.replaceChildren();
+      if (!people.length) { const empty=el("div","empty"); empty.append(el("strong","","No matching profiles"),document.createTextNode("Try a broader search or remove a filter.")); cards.append(empty); return; }
+      for (const person of people) {
+        const card=el("article","card"), avatar=person.avatar_url ? el("img","avatar") : el("div","avatar avatar-fallback",initials(person.name));
+        if (person.avatar_url) { avatar.src=person.avatar_url; avatar.alt=""; avatar.referrerPolicy="no-referrer"; }
+        const identity=el("div","identity"), personLine=el("div","person-line");
+        personLine.append(el("span","person",person.name || "GitLab user"));
+        if (person.level) personLine.append(el("span","level",`${person.level}${person.level === "Unspecified" ? "" : " - inferred"}`));
+        identity.append(personLine,el("div","title",person.job_title || "Job title not listed"));
+        const meta=el("div","meta"); meta.append(el("span","",`Location: ${person.location || "Not listed"}`)); identity.append(meta);
+        const contact=el("div","contact"), email=el("span",`email${person.public_email ? "" : " missing"}`,person.public_email || "No public email listed");
+        const link=el("a","profile","GitLab profile"); link.href=person.web_url; link.target="_blank"; link.rel="noopener noreferrer"; contact.append(email,link); identity.append(contact); card.append(avatar,identity);
+      }
+    }
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const token = tokenInput.value.trim().replace(/^Bearer\s+/i, "");
+      if (!/^[\x21-\x7E]+$/.test(token)) {
+        notice.textContent = "Paste the GitLab token value using ASCII characters only. Do not include quotes or hidden whitespace.";
+        notice.classList.add("show");
+        tokenInput.focus();
+        return;
+      }
+      const params=new URLSearchParams({location:document.querySelector("#location").value.trim(),title:document.querySelector("#role").value.trim(),level:document.querySelector("#level").value});
+      notice.classList.remove("show"); notice.textContent=""; button.disabled=true; button.textContent="Searching..."; count.textContent="";
+      try {
+        const response=await fetch(`/api/search?${params}`,{headers:{Accept:"application/json",Authorization:`Bearer ${token}`}});
+        const payload=await response.json();
+        if (!response.ok) throw new Error(payload.error || "GitLab search failed.");
+        render(payload.people, payload.checked);
+      } catch (error) { cards.replaceChildren(); notice.textContent=error.message; notice.classList.add("show"); }
+      finally { button.disabled=false; button.textContent="Search ->"; }
+    });
+  </script>
+</body>
+</html>
